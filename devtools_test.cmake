@@ -109,7 +109,7 @@ endif()
 #
 
 if(CTEST_TARGET_SYSTEM MATCHES "^Windows")
-    set_ifndef(CTEST_CMAKE_GENERATOR "Visual Studio 16 2019")
+    set_ifndef(CTEST_CMAKE_GENERATOR "Visual Studio 15 2017")
 else()
     set_ifndef(CTEST_CMAKE_GENERATOR "Unix Makefiles")
 endif()
