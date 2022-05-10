@@ -3,3 +3,66 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_print_help
+    COMMAND ${APPLICATION} --help
+)
+set_tests_properties (${prefix}_can_print_help PROPERTIES
+    PASS_REGULAR_EXPRESSION "Welcome to string vigenere cipher app!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_fails_on_invalid_amout_of_args1
+    COMMAND ${APPLICATION} --flag1 --flag2 --flag3
+)
+set_tests_properties (${prefix}_fails_on_invalid_amout_of_args1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid argument amount, try --help or -h command"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_fails_on_invalid_amout_of_args2
+    COMMAND ${APPLICATION} --nohelp
+)
+set_tests_properties (${prefix}_fails_on_invalid_amout_of_args2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid argument amount, try --help or -h command"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_fails_on_incorrect_data_1
+    COMMAND ${APPLICATION} helloworld lemonlemon
+)
+set_tests_properties (${prefix}_fails_on_incorrect_data_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Cipher error occurred!"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_fails_on_incorrect_data_2
+    COMMAND ${APPLICATION} HELLOWORLD HELLOW
+)
+set_tests_properties (${prefix}_fails_on_incorrect_data_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Cipher error occurred!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_right_cipher_1
+    COMMAND ${APPLICATION} HELLOWORLD LEMONLEMON
+)
+set_tests_properties (${prefix}_right_cipher_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "SIXZBHSDZQ"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_right_cipher_2
+    COMMAND ${APPLICATION} HELLOWORLD HELLOWORLD
+)
+set_tests_properties (${prefix}_right_cipher_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "OIWWCSCIWG"
+    LABELS "${MODULE}")

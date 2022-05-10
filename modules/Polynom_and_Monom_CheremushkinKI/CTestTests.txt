@@ -3,3 +3,88 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a polynomial calculator application."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 2x^2 +
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 4 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Polynomial_Format_1
+    COMMAND ${APPLICATION} 2x^2 + 5y^3
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Polynomial_Format_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong polynomial format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Polynomial_Format_2
+    COMMAND ${APPLICATION} 2x*2 + 5x^3
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Polynomial_Format_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong polynomial format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Operation_Format
+    COMMAND ${APPLICATION} 2x^1 me+ow 6x^3
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Operation_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong operation format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Add_Polynomials
+    COMMAND ${APPLICATION} 5x^4+7x^2 + 9x^5+9x^4-3x^3
+)
+set_tests_properties (${prefix}_can_Add_Polynomials PROPERTIES
+    PASS_REGULAR_EXPRESSION "5x\\^4\\+7x\\^2  \\+  9x\\^5\\+9x\\^4\\-3x\\^3  =  14x\\^4\\+7x\\^2\\+9x\\^5\\-3x\\^3"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Diff_Polynomial
+    COMMAND ${APPLICATION} 5x^4+7x^2 - 9x^5+9x^4-3x^3
+)
+set_tests_properties (${prefix}_can_Diff_Polynomial PROPERTIES
+    PASS_REGULAR_EXPRESSION "5x\\^4\\+7x\\^2  \\-  9x\\^5\\+9x\\^4\\-3x\\^3  =  \\-4x\\^4\\+7x\\^2\\-9x\\^5\\+3x\\^3"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Mult_Polynomial
+    COMMAND ${APPLICATION} 1x^4+7x^1 * 3x^1
+)
+set_tests_properties (${prefix}_can_Mult_Polynomial PROPERTIES
+    PASS_REGULAR_EXPRESSION "1x\\^4\\+7x\\^1  \\*  3x\\^1  =  3x\\^5\\+21x\\^2"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Divide_Polynomial
+    COMMAND ${APPLICATION} 3x^4+9x^1 / 3x^1
+)
+set_tests_properties (${prefix}_can_Divide_Polynomial PROPERTIES
+    PASS_REGULAR_EXPRESSION "3x\\^4\\+9x\\^1  /  3x\\^1  =  1x\\^3\\+3x\\^0"
+    LABELS "${MODULE}")
+
+
+
+
+
+

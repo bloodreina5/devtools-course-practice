@@ -3,3 +3,38 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Application started!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_1_Arg_Throw
+    COMMAND ${APPLICATION} 1
+)
+
+add_test(
+    NAME ${prefix}_9_Args_Good
+    COMMAND ${APPLICATION} 1 2 3 4 5 6 7 8 9
+)
+
+add_test(
+    NAME ${prefix}_Check_Sort_Works
+    COMMAND ${APPLICATION} 1 -4 4 -4 2 -1 2 -1
+)
+
+set_tests_properties (${prefix}_Check_Sort_Works PROPERTIES
+    PASS_REGULAR_EXPRESSION "True"
+    LABELS "${MODULE}")

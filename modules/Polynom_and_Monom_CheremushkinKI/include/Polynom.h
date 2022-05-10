@@ -1,13 +1,19 @@
 // Copyright 2022 Cheremushkin Kirill
+
 #ifndef MODULES_POLYNOM_AND_MONOM_CHEREMUSHKINKI_INCLUDE_POLYNOM_H_
 #define MODULES_POLYNOM_AND_MONOM_CHEREMUSHKINKI_INCLUDE_POLYNOM_H_
-#pragma once
+
+#include <string>
+
 #include "Monom.h"
-#include <iostream>
+
 class Polynom : public Monom {
  private:
     Monom* StartMonom;
     int SIZE = 1;
+    std::string FormattingCoeff(double coef);
+    std::string GetSign(double coef);
+    Monom CurrentMonom(Monom* p, int id);
  public :
     Polynom();
     explicit Polynom(int size);
@@ -16,6 +22,8 @@ class Polynom : public Monom {
     void ClearList();
     void SetSize(int size);
     void Equalizer();
+    std::string StrPolynom();
+
     Polynom& operator+(const Monom& monom);
     Polynom& operator-(const Monom& monom);
     Polynom& operator*(const Monom& monom);
