@@ -3,3 +3,91 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_print_help_without_arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_print_help_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is an application that allows to calculate the area of the figures"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_check_number_of_arguments_1
+    COMMAND ${APPLICATION} 1 2
+)
+set_tests_properties (${prefix}_can_check_number_of_arguments_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 1 or 3 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_check_number_of_arguments_2
+    COMMAND ${APPLICATION} 1 2 3 4
+)
+set_tests_properties (${prefix}_can_check_number_of_arguments_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 1 or 3 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_detect_wrong_number_format
+    COMMAND ${APPLICATION} 3..
+)
+set_tests_properties (${prefix}_can_detect_wrong_number_format PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Wrong number format!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_calculate_ball_area
+    COMMAND ${APPLICATION} 2
+)
+set_tests_properties (${prefix}_can_calculate_ball_area PROPERTIES
+    PASS_REGULAR_EXPRESSION "Ball area = 50.264"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_calculate_ball_area_with_negative_radius
+    COMMAND ${APPLICATION} -5
+)
+set_tests_properties (${prefix}_cant_calculate_ball_area_with_negative_radius PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: invalid parameter"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_calculate_ball_area_with_zero_radius
+    COMMAND ${APPLICATION} 0
+)
+set_tests_properties (${prefix}_cant_calculate_ball_area_with_zero_radius PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: invalid parameter"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_calculate_rectangle_area
+    COMMAND ${APPLICATION} 1.5 2 3.6
+)
+set_tests_properties (${prefix}_can_calculate_rectangle_area PROPERTIES
+    PASS_REGULAR_EXPRESSION "Rectangle area = 31.2"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_calculate_rectangle_area_with_negative_parameter
+    COMMAND ${APPLICATION} -1 4 5.5
+)
+set_tests_properties (${prefix}_cant_calculate_rectangle_area_with_negative_parameter PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: invalid parameters"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_cant_calculate_rectangle_area_with_zero_parameter
+    COMMAND ${APPLICATION} 7 0 4.9
+)
+set_tests_properties (${prefix}_cant_calculate_rectangle_area_with_zero_parameter PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: invalid parameters"
+    LABELS "${MODULE}")
