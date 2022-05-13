@@ -4,7 +4,6 @@
 c == '*' || c == '!' || c == '%' || c == '=')
 #define is_function(c) (c >= 'A' && c <= 'Z')
 #define is_ident(c) ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z'))
-
 #include "include/SortFacility.h"
 
 int Sort::op_preced(const char c) {
