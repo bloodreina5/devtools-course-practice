@@ -1,6 +1,7 @@
 // Copyright 2022 Andrich Maria
 
-#define is_operator(c) (c == '+' || c == '-' || c == '/' || c == '*' || c == '!' || c == '%' || c == '=')
+#define is_operator(c) (c == '+' || c == '-' || c == '/' || \
+	                        c == '*' || c == '!' || c == '%' || c == '=')
 #define is_function(c) (c >= 'A' && c <= 'Z')
 #define is_ident(c) ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z'))
 
@@ -95,8 +96,10 @@ bool Sort::shunting_yard(const char* input, char* output) {
                 while (sl > 0) {
                     sc = stack[sl - 1];
                     if (is_operator(sc) &&
-                        ((op_left_assoc(c) && (op_preced(c) <= op_preced(sc))) ||
-                            (!op_left_assoc(c) && (op_preced(c) < op_preced(sc))))) {
+                        ((op_left_assoc(c)
+                            && (op_preced(c) <= op_preced(sc))) ||
+                            (!op_left_assoc(c) 
+                                && (op_preced(c) < op_preced(sc))))) {
                         *outpos = sc; ++outpos;
                         sl--;
                     } else {
@@ -151,7 +154,6 @@ bool Sort::shunting_yard(const char* input, char* output) {
         *outpos = sc; ++outpos;
         --sl;
     }
-
-    *outpos = 0; 
+    *outpos = 0;
     return true;
 }
