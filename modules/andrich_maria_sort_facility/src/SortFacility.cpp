@@ -133,7 +133,7 @@ bool Sort::shunting_yard(const char* input, char* output) {
                 throw("Unknown token %c\n", c);
                 return false;
             }
-        }   
+        }
         ++strpos;
     }
 
