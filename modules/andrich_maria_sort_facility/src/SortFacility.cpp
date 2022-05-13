@@ -5,26 +5,23 @@ c == '*' || c == '!' || c == '%' || c == '=')
 #define is_function(c) (c >= 'A' && c <= 'Z')
 #define is_ident(c) ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z'))
 
+#include <string>
 #include "include/SortFacility.h"
 
 int Sort::op_preced(const char c) {
     switch (c) {
     case '!':
         return 4;
-
     case '*':
     case '/':
     case '%':
         return 3;
-
     case '+':
     case '-':
         return 2;
-
     case '=':
         return 1;
     }
-
     return 0;
 }
 
@@ -40,7 +37,6 @@ bool Sort::op_left_assoc(const char c) {
     case '!':
         return false;
     }
-
     return false;
 }
 
@@ -55,11 +51,9 @@ unsigned int Sort::op_arg_count(const char c) {
         return 2;
     case '!':
         return 1;
-
     default:
         return c - 'A';
     }
-
     return 0;
 }
 
@@ -67,7 +61,6 @@ bool Sort::shunting_yard(const char* input, char* output) {
     const char* strpos = input, * strend = input + strlen(input);
     char c, stack[32], sc, * outpos = output;
     unsigned int sl = 0;
-
     while (strpos < strend) {
         c = *strpos;
         if (c != ' ') {
@@ -140,8 +133,7 @@ bool Sort::shunting_yard(const char* input, char* output) {
                 throw("Unknown token %c\n", c);
                 return false;
             }
-        }
-
+        }   
         ++strpos;
     }
 
