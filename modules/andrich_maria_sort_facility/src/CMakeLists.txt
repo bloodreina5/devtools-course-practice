@@ -1,7 +1,7 @@
 set(target ${LIBRARY})
 
-file(GLOB srcs "*.cpp")
-file(GLOB hdrs "../include/*.h")
+file(GLOB srcs "SortFacility.cpp")
+file(GLOB hdrs "../include/SortFacility.h")
 set_source_files_properties(${srcs} ${hdrs} PROPERTIES
     LABELS "${MODULE};Library")
 
