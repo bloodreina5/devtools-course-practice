@@ -1,6 +1,6 @@
 set(target ${TESTS})
 
-file(GLOB srcs "SortFacility.cpp")
+file(GLOB srcs "*.cpp")
 set_source_files_properties(${srcs} PROPERTIES
     LABELS "${MODULE};Test")
 
