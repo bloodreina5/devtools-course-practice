@@ -59,7 +59,7 @@ unsigned int Sort::op_arg_count(const char c) {
 
 bool Sort::shunting_yard(const char* input, char* output) {
     const char* strpos = input, * strend = input + strlen(input);
-    char c, stack[32], sc, * outpos = output;
+    const char c, stack[32], sc, * outpos = output;
     unsigned int sl = 0;
     while (strpos < strend) {
         c = *strpos;
