@@ -3,3 +3,80 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_run
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_print_help_without_arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_print_help_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is an application that allows to create a queue, fill it with items and apply some methods to the queue"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_check_number_of_arguments_1
+    COMMAND ${APPLICATION} 1
+)
+
+set_tests_properties (${prefix}_can_check_number_of_arguments_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be at least 3 arguments"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_check_number_of_arguments_2
+    COMMAND ${APPLICATION} 1 2 3
+)
+
+set_tests_properties (${prefix}_can_check_number_of_arguments_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: You need to enter an operation"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_detect_wrong_number_format_1
+    COMMAND ${APPLICATION} a get
+)
+
+set_tests_properties (${prefix}_can_detect_wrong_number_format_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Cannot be cast to an integer!"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_can_detect_wrong_number_format_2
+    COMMAND ${APPLICATION} 10000000000 get
+)
+
+set_tests_properties (${prefix}_can_detect_wrong_number_format_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR : Number out of range!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_push_item
+    COMMAND ${APPLICATION} 2 3 4 push 19
+)
+set_tests_properties (${prefix}_can_push_item PROPERTIES
+    PASS_REGULAR_EXPRESSION "queue: 19 3 4"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_get_item
+    COMMAND ${APPLICATION} 7 get
+)
+set_tests_properties (${prefix}_can_get_item PROPERTIES
+    PASS_REGULAR_EXPRESSION "get element: 7"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_get_length
+    COMMAND ${APPLICATION} 3 4 length
+)
+set_tests_properties (${prefix}_can_get_length PROPERTIES
+    PASS_REGULAR_EXPRESSION "queue length: 2"
+    LABELS "${MODULE}")

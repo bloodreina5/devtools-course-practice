@@ -4,3 +4,49 @@
 
 set(prefix "${MODULE}")
 
+add_test(NAME ${prefix}_can_run
+    COMMAND ${APPLICATION})
+set_tests_properties(${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_without_arguments
+    COMMAND ${APPLICATION})
+set_tests_properties(${prefix}_run_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This demonstrate caesar's algorithm"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_one_argument_1
+    COMMAND ${APPLICATION} 1)
+set_tests_properties(${prefix}_run_with_one_argument_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "1"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_one_argument_2
+    COMMAND ${APPLICATION} 8)
+set_tests_properties(${prefix}_run_with_one_argument_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "8"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_one_argument_3
+    COMMAND ${APPLICATION} 7)
+set_tests_properties(${prefix}_run_with_one_argument_3 PROPERTIES
+    PASS_REGULAR_EXPRESSION "7"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_multiple_arguments_1
+    COMMAND ${APPLICATION} 5)
+set_tests_properties(${prefix}_run_with_multiple_arguments_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "5"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_multiple_arguments_2
+    COMMAND ${APPLICATION} 4)
+set_tests_properties(${prefix}_run_with_multiple_arguments_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "4"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_right_and_wrong_arguments
+    COMMAND ${APPLICATION} 3)
+set_tests_properties(${prefix}_run_with_right_and_wrong_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "3"
+    LABELS "${MODULE}")

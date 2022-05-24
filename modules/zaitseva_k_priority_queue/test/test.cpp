@@ -16,6 +16,11 @@ TEST(Zaitseva_Ksenia_Priority_Queue_Tests,
     ASSERT_NO_THROW(PriorityQueue<int>(Q1));
 }
 
+TEST(Zaitseva_Ksenia_Priority_Queue_Tests, vector_constructor) {
+  std::vector<int> vec;
+  ASSERT_NO_THROW(PriorityQueue<int>(vec));
+}
+
 TEST(Zaitseva_Ksenia_Priority_Queue_Tests,
     can_push) {
     PriorityQueue<int> Q;
@@ -27,6 +32,12 @@ TEST(Zaitseva_Ksenia_Priority_Queue_Tests,
     PriorityQueue<int> Q;
     Q.push(-3);
     EXPECT_EQ(Q.pop(), -3);
+}
+
+TEST(Zaitseva_Ksenia_Priority_Queue_Tests, vector_constructor_is_correct) {
+  std::vector<int> vec{1};
+  PriorityQueue<int> Q(vec);
+  ASSERT_EQ(Q.pop(), 1);
 }
 
 TEST(Zaitseva_Ksenia_Priority_Queue_Tests,

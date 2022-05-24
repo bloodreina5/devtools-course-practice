@@ -7,16 +7,9 @@
 #include <vector>
 
 class _common_seq {
-    std::string first_seq;
-    std::string second_seq;
-
  public:
-    _common_seq();
-    _common_seq(std::string first, std::string second);
-    void set_first_seq(std::string s);
-    void set_second_seq(std::string s);
-    int find_common_seq();
-    ~_common_seq();
+    static int find_common_seq(const std::string& first,
+        const std::string& second);
 };
 
 #endif  // MODULES_GUDKOV_A_COMMON_POSLED_INCLUDE_GUDKOV_A_COMMON_POSLED_H_

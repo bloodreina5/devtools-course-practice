@@ -3,3 +3,65 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+# Test 1
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+# Test 2
+add_test(
+    NAME ${prefix}_Сan_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_Сan_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is an application to demonstrate the operation of the interpolation search algorithm"
+    LABELS "${MODULE}")
+
+# Test 3
+add_test(
+    NAME ${prefix}_Сant_Check_2_Arguments
+    COMMAND ${APPLICATION} 1 1
+)
+set_tests_properties (${prefix}_Сant_Check_2_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error occured: "
+    LABELS "${MODULE}")
+
+# Test 4
+add_test(
+    NAME ${prefix}_Check_Wrong_Argument_Type
+    COMMAND ${APPLICATION} as
+)
+set_tests_properties (${prefix}_Check_Wrong_Argument_Type PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error occured: Wrong argument type."
+    LABELS "${MODULE}")
+
+# Test 5
+add_test(
+    NAME ${prefix}_Returns_Correct_Index
+    COMMAND ${APPLICATION} 3
+)
+set_tests_properties (${prefix}_Returns_Correct_Index PROPERTIES
+    PASS_REGULAR_EXPRESSION "5"
+    LABELS "${MODULE}")
+
+# Test 6
+add_test(
+    NAME ${prefix}_Returns_Correct_Index_With_Minus
+    COMMAND ${APPLICATION} -2
+)
+set_tests_properties (${prefix}_Returns_Correct_Index_With_Minus PROPERTIES
+    PASS_REGULAR_EXPRESSION "2"
+    LABELS "${MODULE}")
+
+# Test 7
+add_test(
+    NAME ${prefix}_Returns_Minus_One
+    COMMAND ${APPLICATION} 2
+)
+set_tests_properties (${prefix}_Returns_Minus_One PROPERTIES
+    PASS_REGULAR_EXPRESSION "-1"
+    LABELS "${MODULE}")

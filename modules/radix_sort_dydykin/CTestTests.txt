@@ -3,3 +3,37 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a radix sort application"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_error_test
+    COMMAND ${APPLICATION} 5 10 7 12
+)
+
+set_tests_properties (${prefix}_error_test PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be 5 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Sort
+    COMMAND ${APPLICATION} 5 7 10 12 12
+)
+
+set_tests_properties (${prefix}_can_Sort PROPERTIES
+    PASS_REGULAR_EXPRESSION "Origin = 5.000000 7.000000 10.000000 12.000000 12.000000  Sorted = 5.000000 7.000000 10.000000 12.000000 12.000000"
+    LABELS "${MODULE}")

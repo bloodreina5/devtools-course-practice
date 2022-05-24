@@ -3,3 +3,66 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_print_help
+    COMMAND ${APPLICATION} --help
+)
+set_tests_properties (${prefix}_can_print_help PROPERTIES
+    PASS_REGULAR_EXPRESSION "Welcome to stohatic variable app!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_dispersion
+    COMMAND ${APPLICATION} 4 1,2,3,4 0.2,0.2,0.55,0.05
+)
+set_tests_properties (${prefix}_dispersion PROPERTIES
+    PASS_REGULAR_EXPRESSION "0.747500"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_raw_moment
+    COMMAND ${APPLICATION} 1 1,2,3,4 0.2,0.2,0.55,0.05
+)
+set_tests_properties (${prefix}_raw_moment PROPERTIES
+    PASS_REGULAR_EXPRESSION "6.750000"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_mean
+    COMMAND ${APPLICATION} 2 1,2,3,4 0.2,0.2,0.55,0.05
+)
+set_tests_properties (${prefix}_mean PROPERTIES
+    PASS_REGULAR_EXPRESSION "2.450000"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_central_moment
+    COMMAND ${APPLICATION} 3 1,2,3,4 0.2,0.2,0.55,0.05
+)
+set_tests_properties (${prefix}_central_moment PROPERTIES
+    PASS_REGULAR_EXPRESSION "-0.350250"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_incorrect_value
+    COMMAND ${APPLICATION} 2 1,2,3,4 0.2,-0.2,0.55,0.05
+)
+set_tests_properties (${prefix}_incorrect_value PROPERTIES
+    PASS_REGULAR_EXPRESSION "Calculational error occured!"
+    LABELS "${MODULE}")
+	
+add_test(
+    NAME ${prefix}_incorrect_number
+    COMMAND ${APPLICATION} 0 1,2,3,4 0.2,0.2,0.55,0.05
+)
+set_tests_properties (${prefix}_incorrect_number PROPERTIES
+    PASS_REGULAR_EXPRESSION "Incorrect number of operation"
+    LABELS "${MODULE}")	

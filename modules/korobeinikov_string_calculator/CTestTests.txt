@@ -3,3 +3,66 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_print_help
+    COMMAND ${APPLICATION} --help
+)
+set_tests_properties (${prefix}_can_print_help PROPERTIES
+    PASS_REGULAR_EXPRESSION "Welcome to string calculator app!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_fails_on_invalid_amout_of_args
+    COMMAND ${APPLICATION} --flag1 --flag2
+)
+set_tests_properties (${prefix}_fails_on_invalid_amout_of_args PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid argument amount"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_fails_on_incorrect_data
+    COMMAND ${APPLICATION} 5-asdb
+)
+set_tests_properties (${prefix}_fails_on_incorrect_data PROPERTIES
+    PASS_REGULAR_EXPRESSION "Calculational error occured!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_fails_on_divide_by_zero
+    COMMAND ${APPLICATION} 1/0
+)
+set_tests_properties (${prefix}_fails_on_divide_by_zero PROPERTIES
+    PASS_REGULAR_EXPRESSION "Calculational error occured!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_calculates_correctly1
+    COMMAND ${APPLICATION} 10-3*6
+)
+set_tests_properties (${prefix}_calculates_correctly1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "-8"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_calculates_correctly2
+    COMMAND ${APPLICATION} 4^2+6
+)
+set_tests_properties (${prefix}_calculates_correctly2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "22"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_calculates_correctly3
+    COMMAND ${APPLICATION} 4*2-2^3/4
+)
+set_tests_properties (${prefix}_calculates_correctly3 PROPERTIES
+    PASS_REGULAR_EXPRESSION "6"
+    LABELS "${MODULE}")

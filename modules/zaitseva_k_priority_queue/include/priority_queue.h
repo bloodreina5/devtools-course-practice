@@ -14,11 +14,17 @@ class PriorityQueue {
     void heapify(int i);
  public:
     PriorityQueue() {}
+    explicit PriorityQueue(const std::vector<T>& data);
     void push(T new_elem);
     T pop();
     int size() { return data.size(); }
     bool isEmpty() { return !data.size(); }
 };
+
+template <typename T>
+PriorityQueue<T>::PriorityQueue(const std::vector<T>& _data) {
+  for (size_t i = 0; i < _data.size(); ++i) push(_data[i]);
+}
 
 template<typename T>
 void PriorityQueue<T>::heapify(int i) {

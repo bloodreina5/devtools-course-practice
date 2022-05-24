@@ -3,3 +3,117 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_run_program
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_run_program PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid argument amount, try --help or -h commands"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_get_help
+    COMMAND ${APPLICATION} --help
+)
+set_tests_properties (${prefix}_get_help PROPERTIES
+    PASS_REGULAR_EXPRESSION "This program's purpose to calculate if line crosses the plane or not"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_show_line
+    COMMAND ${APPLICATION} -l
+)
+set_tests_properties (${prefix}_show_line PROPERTIES
+    PASS_REGULAR_EXPRESSION "0 0 0 1 1 1
+success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_create_line_elem
+    COMMAND ${APPLICATION} -l 1 2 3 4 5 6
+)
+set_tests_properties (${prefix}_create_line_elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_show_plane
+    COMMAND ${APPLICATION} -p
+)
+set_tests_properties (${prefix}_show_plane PROPERTIES
+    PASS_REGULAR_EXPRESSION "1 1 1 1
+success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_create_plane_elem
+    COMMAND ${APPLICATION} -p 1 2 3 4
+)
+set_tests_properties (${prefix}_create_plane_elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_create_line_and_plane_elem1
+    COMMAND ${APPLICATION} -l 1 2 3 4 5 6 -p 1 2 3 4
+)
+set_tests_properties (${prefix}_create_line_and_plane_elem1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_create_line_and_plane_elem2
+    COMMAND ${APPLICATION} -l 0 0 0 0 0 0 -p 0 0 0 0
+)
+set_tests_properties (${prefix}_create_line_and_plane_elem2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_relation_test
+    COMMAND ${APPLICATION} -r
+)
+set_tests_properties (${prefix}_relation_test PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_intersection_test
+    COMMAND ${APPLICATION} -i
+)
+set_tests_properties (${prefix}_intersection_test PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_perpendicular_test
+    COMMAND ${APPLICATION} -per
+)
+set_tests_properties (${prefix}_perpendicular_test PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_relation_test_elem
+    COMMAND ${APPLICATION} -l 1 2 3 4 -p 1 2 3 4 -r
+)
+set_tests_properties (${prefix}_relation_test_elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_intersection_test_elem
+    COMMAND ${APPLICATION} -l 1 2 3 4 -p 1 2 3 4 -i
+)
+set_tests_properties (${prefix}_relation_test_elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_perpendicular_test_elem
+    COMMAND ${APPLICATION} -l 1 2 3 4 -p 1 2 3 4 -per
+)
+set_tests_properties (${prefix}_relation_test_elem PROPERTIES
+    PASS_REGULAR_EXPRESSION "success"
+    LABELS "${MODULE}")

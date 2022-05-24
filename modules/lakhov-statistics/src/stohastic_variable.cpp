@@ -2,6 +2,8 @@
 
 #include "include/stohastic_variable.h"
 #include <vector>
+#include <string>
+#include <stdexcept>
 
 StohasticVariable::StohasticVariable(const std::vector<double>& values,
                                      const std::vector<double>& probabilities)
@@ -25,6 +27,12 @@ double StohasticVariable::RawMoment(int k) {
 }
 
 double StohasticVariable::Mean() {
+    int size = this->values_.size();
+    for (int i = 0; i < size; i++) {
+        if (this->probabilities_[i] < 0) {
+            throw std::invalid_argument("Incorrect data");
+        }
+    }
     return this->RawMoment(1);
 }
 

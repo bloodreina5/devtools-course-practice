@@ -1,5 +1,5 @@
 // Copyright 2022 Shatalin Dmitrii
-#include <vector>
+
 #include "include/deposit_calculator.h"
 
 double DepositCalculator::calculateDeposit(double amount, int years,

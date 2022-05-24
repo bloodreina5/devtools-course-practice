@@ -3,3 +3,42 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_print_help_without_arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_print_help_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "The application searches for the greatest common subsequence of two given arrays."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_test_first_size_0
+    COMMAND ${APPLICATION} "asdasw" 
+)
+set_tests_properties (${prefix}_test_first_size_0 PROPERTIES
+    PASS_REGULAR_EXPRESSION 0
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_test1
+    COMMAND ${APPLICATION} "abcabaac" "baccbca"
+)
+set_tests_properties (${prefix}_test1 PROPERTIES
+    PASS_REGULAR_EXPRESSION 4
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_test2
+    COMMAND ${APPLICATION} "wadase" "wadase"
+)
+set_tests_properties (${prefix}_test2 PROPERTIES
+    PASS_REGULAR_EXPRESSION 6
+    LABELS "${MODULE}")

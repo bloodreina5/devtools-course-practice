@@ -3,3 +3,72 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION})
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Сan_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION})
+set_tests_properties (${prefix}_Сan_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is an application to demonstrate the operation of the calculating the volume of a cube"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Сan_Check_1_Argument
+    COMMAND ${APPLICATION} 1)
+set_tests_properties (${prefix}_Сan_Check_1_Argument PROPERTIES
+    PASS_REGULAR_EXPRESSION "Should be 2 argument"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Check_2_Arguments
+    COMMAND ${APPLICATION} 1 2 3)
+set_tests_properties (${prefix}_Can_Check_2_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Should be 2 argument"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Check_Format_First_More_Than_Second
+    COMMAND ${APPLICATION} 5 2)
+set_tests_properties (${prefix}_Can_Check_Format_First_More_Than_Second PROPERTIES
+    PASS_REGULAR_EXPRESSION "First arg more than second"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Check_Format_Wrong_Type_1
+    COMMAND ${APPLICATION} 3.22 5)
+set_tests_properties (${prefix}_Can_Check_Format_Wrong_Type_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong argument type"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Check_Format_Wrong_Type_2
+    COMMAND ${APPLICATION} pi 5)
+set_tests_properties (${prefix}_Can_Check_Format_Wrong_Type_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "Wrong argument type"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Print_Prime_Numbers_1
+    COMMAND ${APPLICATION} 1 5)
+set_tests_properties (${prefix}_Can_Print_Prime_Numbers_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "64"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Print_Prime_Numbers_2
+    COMMAND ${APPLICATION} 1 10)
+set_tests_properties (${prefix}_Can_Print_Prime_Numbers_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "729"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Print_Prime_Numbers_3
+    COMMAND ${APPLICATION} 5 49)
+set_tests_properties (${prefix}_Can_Print_Prime_Numbers_3 PROPERTIES
+    PASS_REGULAR_EXPRESSION "85184"
+    LABELS "${MODULE}")

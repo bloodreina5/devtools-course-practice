@@ -1,0 +1,70 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(NAME ${prefix}_can_run
+    COMMAND ${APPLICATION})
+set_tests_properties(${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_without_arguments
+    COMMAND ${APPLICATION})
+set_tests_properties(${prefix}_run_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Euler's totient function calculator"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_one_argument_1
+    COMMAND ${APPLICATION} 1)
+set_tests_properties(${prefix}_run_with_one_argument_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "1"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_one_argument_2
+    COMMAND ${APPLICATION} 500)
+set_tests_properties(${prefix}_run_with_one_argument_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "200"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_one_argument_3
+    COMMAND ${APPLICATION} 1000000)
+set_tests_properties(${prefix}_run_with_one_argument_3 PROPERTIES
+    PASS_REGULAR_EXPRESSION "400000"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_multiple_arguments_1
+    COMMAND ${APPLICATION} 1 20 400 6000 80000)
+set_tests_properties(${prefix}_run_with_multiple_arguments_1 PROPERTIES
+    PASS_REGULAR_EXPRESSION "1 8 160 1600 32000"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_multiple_arguments_2
+    COMMAND ${APPLICATION} 99 88 660 70 21 168 735 507 67 791)
+set_tests_properties(${prefix}_run_with_multiple_arguments_2 PROPERTIES
+    PASS_REGULAR_EXPRESSION "60 40 160 24 12 48 336 312 66 672"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_one_wrong_argument
+    COMMAND ${APPLICATION} aaa)
+set_tests_properties(${prefix}_run_with_one_wrong_argument PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error in argument 1"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_right_and_wrong_arguments
+    COMMAND ${APPLICATION} 8200 8497 bbb 406 13)
+set_tests_properties(${prefix}_run_with_right_and_wrong_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error in argument 3"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_negative_value
+    COMMAND ${APPLICATION} -123456)
+set_tests_properties(${prefix}_run_with_negative_value PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error in argument 1:\nnegative value"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_with_positive_and_negative_values
+    COMMAND ${APPLICATION} 57 -73 27 39 47)
+set_tests_properties(${prefix}_run_with_positive_and_negative_values PROPERTIES
+    PASS_REGULAR_EXPRESSION "Error in argument 2:\nnegative value"
+    LABELS "${MODULE}")

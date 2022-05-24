@@ -3,3 +3,58 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_print_help_without_arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_print_help_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "The application searches for the longest increasing subsequence of a given array"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_detect_invalid_input
+    COMMAND ${APPLICATION} 2 a b 3
+)
+set_tests_properties (${prefix}_can_detect_invalid_input PROPERTIES
+    PASS_REGULAR_EXPRESSION "Given array must contains only integers"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_increasing
+    COMMAND ${APPLICATION} 1 2 5 4 6 12 40
+)
+set_tests_properties (${prefix}_increasing PROPERTIES
+    PASS_REGULAR_EXPRESSION "4 6 12 40"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_increasing_full
+    COMMAND ${APPLICATION} 1 2 3 4 6 12 40
+)
+set_tests_properties (${prefix}_increasing_full PROPERTIES
+    PASS_REGULAR_EXPRESSION "1 2 3 4 6 12 40"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_not_increasing
+    COMMAND ${APPLICATION} 3 3 3 3 3
+)
+set_tests_properties (${prefix}_not_increasing PROPERTIES
+    PASS_REGULAR_EXPRESSION "3"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_decreasing
+    COMMAND ${APPLICATION} 100 27 12 5
+)
+set_tests_properties (${prefix}_decreasing PROPERTIES
+    PASS_REGULAR_EXPRESSION "100"
+    LABELS "${MODULE}")

@@ -16,7 +16,8 @@ class TQueue {
     TQueue(const TQueue<T>& q);
     ~TQueue();
 
-    TQueue<T>& operator =(const TQueue<T>& _v);
+    TQueue<T>& operator = (const TQueue<T>& _v);
+    T operator[] (int i);
 
     void Push(T d);
     T Get();
@@ -76,6 +77,13 @@ TQueue<T>& TQueue<T>::operator =(const TQueue<T>& _v) {
     this->end = _v.end;
     this->count = _v.count;
     return *this;
+}
+
+template <class T>
+T TQueue<T>::operator[](int i) {
+    if (i >= length)
+        throw "exception";
+    return x[i];
 }
 
 template<class T>

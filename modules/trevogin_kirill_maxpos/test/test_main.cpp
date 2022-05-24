@@ -1,4 +1,4 @@
-// Copyright 2022 Bakina Kseniia
+// Copyright 2022 Trevogin Kirill
 
 #include <gtest/gtest.h>
 
