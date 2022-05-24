@@ -25,33 +25,33 @@ ASSERT_EQ(answer, 'q');
 
 TEST(Sort_Facility, test_simple_equation) {
 Sort s;
-const char* input = "a = b + c";
+const char* input = "a = b + c1";
 char output[128];
 
 s.shunting_yard(input, output);
 
 std::string answer = output;
-ASSERT_EQ(answer, "abc+=");
+ASSERT_EQ(answer, "abc1+=");
 }
 
 TEST(Sort_Facility, test_equation) {
 Sort s;
-const char* input = "a = b + c * d - f";
+const char* input = "a = b + c1 * d - f";
 char output[128];
 
 s.shunting_yard(input, output);
 
 std::string answer = output;
-ASSERT_EQ(answer, "abcd*+f-=");
+ASSERT_EQ(answer, "abc1d*+f-=");
 }
 
 TEST(Sort_Facility, test_difficult_equation) {
 Sort s;
-const char* input = "a = D(f - b * c + d, !e, g)";
+const char* input = "a = D(f - b * c1 + d, !e, g)";
 char output[128];
 
 s.shunting_yard(input, output);
 
 std::string answer = output;
-ASSERT_EQ(answer, "afbc*-d+e!gD=");
+ASSERT_EQ(answer, "afbc1*-d+e!gD=");
 }
