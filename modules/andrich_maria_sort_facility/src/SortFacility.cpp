@@ -62,7 +62,7 @@ bool Sort::shunting_yard(char* input, char* output) {
     char c1, stack[32], sc, * outpos = output;
     unsigned int sl = 0;
     while (strpos < strend) {
-        c1 = *strpos;
+        char c1 = *strpos;
         if (c1 != ' ') {
             if (is_ident(c1)) {
                 *outpos = c1; ++outpos;
