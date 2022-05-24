@@ -59,7 +59,7 @@ unsigned int Sort::op_arg_count(char c) {
 
 bool Sort::shunting_yard(char* input, char* output) {
     char* strpos = input, * strend = input + strlen(input);
-    char c, stack[32], sc, * outpos = output;
+    char stack[32], sc, * outpos = output;
     unsigned int sl = 0;
     while (strpos < strend) {
         char c = *strpos;
