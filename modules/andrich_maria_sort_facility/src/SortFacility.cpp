@@ -130,7 +130,7 @@ bool Sort::shunting_yard(char* input, char* output) {
                     }
                 }
             } else {
-                throw("Unknown token %c\n", c);
+                throw("Unknown token");
                 return false;
             }
         }
