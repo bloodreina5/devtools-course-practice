@@ -8,7 +8,7 @@ c == '*' || c == '!' || c == '%' || c == '=')
 #include <string>
 #include "include/SortFacility.h"
 
-int Sort::op_preced(char c) {
+int Sort::op_preced(const char c) {
     switch (c) {
     case '!':
         return 4;
@@ -25,7 +25,7 @@ int Sort::op_preced(char c) {
     return 0;
 }
 
-bool Sort::op_left_assoc(char c) {
+bool Sort::op_left_assoc(const char c) {
     switch (c) {
     case '*':
     case '/':
@@ -40,7 +40,7 @@ bool Sort::op_left_assoc(char c) {
     return false;
 }
 
-unsigned int Sort::op_arg_count(char c) {
+unsigned int Sort::op_arg_count(const char c) {
     switch (c) {
     case '*':
     case '/':
@@ -57,8 +57,8 @@ unsigned int Sort::op_arg_count(char c) {
     return 0;
 }
 
-bool Sort::shunting_yard(char* input, char* output) {
-    char* strpos = input, * strend = input + strlen(input);
+bool Sort::shunting_yard(const char* input, char* output) {
+    const char* strpos = input, * strend = input + strlen(input);
     char stack[32], sc, * outpos = output;
     unsigned int sl = 0;
     while (strpos < strend) {
@@ -130,7 +130,7 @@ bool Sort::shunting_yard(char* input, char* output) {
                     }
                 }
             } else {
-                throw("Unknown token");
+                throw("Unknown token %c\n", c);
                 return false;
             }
         }
