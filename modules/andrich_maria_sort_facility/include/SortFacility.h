@@ -7,9 +7,9 @@
 
 class Sort {
  public:
-int op_preced(char c1);
-bool op_left_assoc(char c1);
-unsigned int op_arg_count(char c1);
+int op_preced(char c);
+bool op_left_assoc(char c);
+unsigned int op_arg_count(char c);
 bool shunting_yard(char* input, char* output);
 };
 

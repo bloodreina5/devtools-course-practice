@@ -1,15 +1,15 @@
 // Copyright 2022 Andrich Maria
 
-#define is_operator(c1) (c1 == '+' || c1 == '-' || c1 == '/' || \
-c1 == '*' || c1 == '!' || c1 == '%' || c1 == '=')
-#define is_function(c1) (c1 >= 'A' && c1 <= 'Z')
-#define is_ident(c1) ((c1 >= '0' && c1 <= '9') || (c1 >= 'a' && c1 <= 'z'))
+#define is_operator(c) (c == '+' || c == '-' || c == '/' || \
+c == '*' || c == '!' || c == '%' || c == '=')
+#define is_function(c) (c >= 'A' && c <= 'Z')
+#define is_ident(c) ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z'))
 
 #include <string>
 #include "include/SortFacility.h"
 
-int Sort::op_preced(char c1) {
-    switch (c1) {
+int Sort::op_preced(char c) {
+    switch (c) {
     case '!':
         return 4;
     case '*':
@@ -25,8 +25,8 @@ int Sort::op_preced(char c1) {
     return 0;
 }
 
-bool Sort::op_left_assoc(char c1) {
-    switch (c1) {
+bool Sort::op_left_assoc(char c) {
+    switch (c) {
     case '*':
     case '/':
     case '%':
@@ -40,8 +40,8 @@ bool Sort::op_left_assoc(char c1) {
     return false;
 }
 
-unsigned int Sort::op_arg_count(char c1) {
-    switch (c1) {
+unsigned int Sort::op_arg_count(char c) {
+    switch (c) {
     case '*':
     case '/':
     case '%':
@@ -59,17 +59,17 @@ unsigned int Sort::op_arg_count(char c1) {
 
 bool Sort::shunting_yard(char* input, char* output) {
     char* strpos = input, * strend = input + strlen(input);
-    char c1, stack[32], sc, * outpos = output;
+    char c, stack[32], sc, * outpos = output;
     unsigned int sl = 0;
     while (strpos < strend) {
-        char c1 = *strpos;
-        if (c1 != ' ') {
-            if (is_ident(c1)) {
-                *outpos = c1; ++outpos;
-            } else if (is_function(c1)) {
-                stack[sl] = c1;
+        char c = *strpos;
+        if (c != ' ') {
+            if (is_ident(c)) {
+                *outpos = c; ++outpos;
+            } else if (is_function(c)) {
+                stack[sl] = c;
                 ++sl;
-            } else if (c1 == ',') {
+            } else if (c == ',') {
                 bool pe = false;
                 while (sl > 0) {
                     sc = stack[sl - 1];
@@ -85,14 +85,14 @@ bool Sort::shunting_yard(char* input, char* output) {
                     throw("Error: separator or parentheses mismatched\n");
                     return false;
                 }
-            } else if (is_operator(c1)) {
+            } else if (is_operator(c)) {
                 while (sl > 0) {
                     sc = stack[sl - 1];
                     if (is_operator(sc) &&
-                        ((op_left_assoc(c1)
-                            && (op_preced(c1) <= op_preced(sc))) ||
-                            (!op_left_assoc(c1)
-                                && (op_preced(c1) < op_preced(sc))))) {
+                        ((op_left_assoc(c)
+                            && (op_preced(c) <= op_preced(sc))) ||
+                            (!op_left_assoc(c)
+                                && (op_preced(c) < op_preced(sc))))) {
                         *outpos = sc; ++outpos;
                         sl--;
                     } else {
@@ -130,7 +130,7 @@ bool Sort::shunting_yard(char* input, char* output) {
                     }
                 }
             } else {
-                throw("Unknown token %c\n", c1);
+                throw("Unknown token %c\n", c);
                 return false;
             }
         }
