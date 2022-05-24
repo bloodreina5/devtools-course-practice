@@ -52,7 +52,7 @@ unsigned int Sort::op_arg_count(char c) {
     case '!':
         return 1;
     default:
-        return c1 - 'A';
+        return c - 'A';
     }
     return 0;
 }
@@ -99,12 +99,12 @@ bool Sort::shunting_yard(char* input, char* output) {
                         break;
                     }
                 }
-                stack[sl] = c1;
+                stack[sl] = c;
                 ++sl;
-            } else if (c1 == '(') {
-                stack[sl] = c1;
+            } else if (c == '(') {
+                stack[sl] = c;
                 ++sl;
-            } else if (c1 == ')') {
+            } else if (c == ')') {
                 bool pe = false;
 
                 while (sl > 0) {
