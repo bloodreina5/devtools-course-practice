@@ -20,7 +20,7 @@ s.shunting_yard(input, output);
 
 std::string answer = output;
 
-ASSERT_EQ(answer, 'q');
+ASSERT_EQ(answer, "q");
 }
 
 TEST(Sort_Facility, test_simple_equation) {
