@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <string>
-#include "include/SortFacility.h"
+#include "../include/SortFacility.h"
 
 TEST(Sort_Facility, test_zero) {
 Sort s;
