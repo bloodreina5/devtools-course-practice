@@ -11,7 +11,7 @@ class Sort {
 
     int op_preced(const char c1);
   bool op_left_assoc(const char c1);
-  unsigned int op_arg_count(const char c1);
+  unsigned int op_arg_count(char c1);
   bool shunting_yard(const char * input, char * output);
 };
 
