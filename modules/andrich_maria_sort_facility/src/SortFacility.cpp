@@ -86,7 +86,7 @@ bool Sort::shunting_yard(const char * input, char * output) {
           }
         }
         if (!pe) {
-          throw ("Error: separator or parentheses mismatched\n");
+          throw("Error: separator or parentheses mismatched\n");
           return false;
         }
       } else if (is_operator(c1)) {
@@ -124,7 +124,7 @@ bool Sort::shunting_yard(const char * input, char * output) {
           }
         }
         if (!pe) {
-          throw ("Error: parentheses mismatched\n");
+          throw("Error: parentheses mismatched\n");
           return false;
         }
         sl--;
@@ -137,7 +137,7 @@ bool Sort::shunting_yard(const char * input, char * output) {
           }
         }
       } else {
-        throw ("Unknown token %c\n", c1);
+        throw("Unknown token %c\n", c1);
         return false;
       }
     }
@@ -147,7 +147,7 @@ bool Sort::shunting_yard(const char * input, char * output) {
   while (sl > 0) {
     sc = stack[sl - 1];
     if (sc == '(' || sc == ')') {
-      throw ("Error: parentheses mismatched\n");
+      throw("Error: parentheses mismatched\n");
       return false;
     }
     * outpos = sc;
