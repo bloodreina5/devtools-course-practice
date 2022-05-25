@@ -41,7 +41,7 @@ bool Sort::op_left_assoc(const char c1) {
   return false;
 }
 
-unsigned int Sort::op_arg_count(char c1) {
+unsigned int Sort::op_arg_count(const char c1) {
   switch (c1) {
   case '*':
   case '/':
