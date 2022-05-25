@@ -8,7 +8,7 @@
 class Sort {
 
 
-  public:
+ public:
 
     int op_preced(const char c1);
   bool op_left_assoc(const char c1);
