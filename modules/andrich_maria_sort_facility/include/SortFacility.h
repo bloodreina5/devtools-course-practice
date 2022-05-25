@@ -7,7 +7,6 @@
 
 class Sort {
 
-
  public:
 
     int op_preced(const char c1);
