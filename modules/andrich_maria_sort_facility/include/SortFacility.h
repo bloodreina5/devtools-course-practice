@@ -6,9 +6,7 @@
 #include <string.h>
 
 class Sort {
-
  public:
-
     int op_preced(const char c1);
   bool op_left_assoc(const char c1);
   unsigned int op_arg_count(const char c1);
