@@ -58,7 +58,7 @@ unsigned int Sort::op_arg_count(const char c1) {
   return 0;
 }
 
-bool Sort::shunting_yard(const char * input, char * output){
+bool Sort::shunting_yard(const char * input, char * output) {
   const char * strpos = input,
     * strend = input + strlen(input);
   char stack[32], sc, * outpos = output;
