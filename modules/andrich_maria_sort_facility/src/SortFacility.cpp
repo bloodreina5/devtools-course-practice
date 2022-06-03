@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "../include/SortFacility.h"
+#include "include/SortFacility.h"
 
 int Sort::op_preced(const char c1) {
   switch (c1) {
