@@ -7,8 +7,7 @@
 
 class Sort {
 
-  public:
-    bool shunting_yard(const char * input, char * output);
+  bool shunting_yard(const char * input, char * output);
 };
 
 #endif  //  MODULES_ANDRICH_MARIA_SORT_FACILITY_INCLUDE_SORTFACILITY_H_
