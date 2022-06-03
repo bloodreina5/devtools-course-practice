@@ -6,6 +6,7 @@
 #include <string.h>
 
 class Sort {
+
   public:
     bool shunting_yard(const char * input, char * output);
 };
