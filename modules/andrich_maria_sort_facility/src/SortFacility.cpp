@@ -6,8 +6,39 @@
 #define is_ident(c1)((c1 >= '0' && c1 <= '9') || (c1 >= 'a' && c1 <= 'z'))
 
 #include <string>
-
 #include "include/SortFacility.h"
+
+int Sort::op_preced(const char c) {
+    switch (c) {
+    case '!':
+        return 4;
+    case '*':
+    case '/':
+    case '%':
+        return 3;
+    case '+':
+    case '-':
+        return 2;
+    case '=':
+        return 1;
+    }
+    return 0;
+}
+
+bool Sort::op_left_assoc(const char c) {
+    switch (c) {
+    case '*':
+    case '/':
+    case '%':
+    case '+':
+    case '-':
+    case '=':
+        return true;
+    case '!':
+        return false;
+    }
+    return false;
+}
 
 bool Sort::shunting_yard(const char * input, char * output) {
   const char * strpos = input,
@@ -88,7 +119,7 @@ bool Sort::shunting_yard(const char * input, char * output) {
           }
         }
       } else {
-        throw("Unknown token %c\n", c1);
+        throw("Unknown token\n");
         return false;
       }
     }

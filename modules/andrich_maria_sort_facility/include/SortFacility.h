@@ -6,7 +6,11 @@
 #include <string.h>
 
 class Sort {
+ public:
   bool shunting_yard(const char * input, char * output);
+ private :
+  int op_preced(const char c);
+  bool op_left_assoc(const char c);
 };
 
 #endif  //  MODULES_ANDRICH_MARIA_SORT_FACILITY_INCLUDE_SORTFACILITY_H_
