@@ -25,8 +25,8 @@ ASSERT_EQ(*answer, *input);
 
 TEST(Sort_Facility, test_simple_equation) {
 Sort s;
-const char* input = "a = b + c1";
-const char* expected = "abc1+=";
+const char* input = "a = b + nb1";
+const char* expected = "abnb1+=";
 char output[128];
 
 s.shunting_yard(input, output);
@@ -38,8 +38,8 @@ ASSERT_EQ(*answer, *expected);
 
 TEST(Sort_Facility, test_equation) {
 Sort s;
-const char* input = "a = b + c1 * d - f";
-const char* expected = "abc1d*+f-=";
+const char* input = "a = b + nb1 * d - f";
+const char* expected = "abnb1d*+f-=";
 char output[128];
 
 s.shunting_yard(input, output);
@@ -51,8 +51,8 @@ ASSERT_EQ(*answer, *expected);
 
 TEST(Sort_Facility, test_difficult_equation) {
 Sort s;
-const char* input = "a = D(f - b * c1 + d, !e, g)";
-const char* expected = "afbc1*-d+e!gD=";
+const char* input = "a = D(f - b * nb1 + d, !e, g)";
+const char* expected = "afbnb1*-d+e!gD=";
 char output[128];
 
 s.shunting_yard(input, output);
