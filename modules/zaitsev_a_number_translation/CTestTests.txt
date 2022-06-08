@@ -3,3 +3,83 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a number translation application."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be at least 3 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Arguments_Validation
+    COMMAND ${APPLICATION} 2 3
+)
+set_tests_properties (${prefix}_can_Check_Arguments_Validation PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Invalid type of argument."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Out_Of_Range
+    COMMAND ${APPLICATION} 10000000000 translating_a_number_into_a_word
+)
+set_tests_properties (${prefix}_can_Check_Number_Out_Of_Range PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR : Number out of range!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Wrong_Operation
+    COMMAND ${APPLICATION} 1 qqq
+)
+set_tests_properties (${prefix}_can_Check_Wrong_Operation PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Wrong operation!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Translating_Number_Into_Word
+    COMMAND ${APPLICATION} 1 translating_a_number_into_a_word
+)
+set_tests_properties (${prefix}_can_Check_Translating_Number_Into_Word PROPERTIES
+    PASS_REGULAR_EXPRESSION "word: one "
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Translating_Word_Into_Number
+    COMMAND ${APPLICATION} "seven " translating_a_word_into_a_number
+)
+set_tests_properties (${prefix}_can_Check_Translating_Word_Into_Number PROPERTIES
+    PASS_REGULAR_EXPRESSION "number: 7"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Translating_Complicated_Word_Into_Number
+    COMMAND ${APPLICATION} 11117 translating_a_word_into_a_number
+)
+set_tests_properties (${prefix}_can_Check_Translating_Complicated_Word_Into_Number PROPERTIES
+    PASS_REGULAR_EXPRESSION "word: eleven thousand one hundred seventeen  "
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Translating_Complicated_Number_Into_Word
+    COMMAND ${APPLICATION}  three hundred eleven thousand one hundred seventeen translating_a_number_into_a_word
+)
+set_tests_properties (${prefix}_can_Check_Translating_Complicated_Number_Into_Word PROPERTIES
+    PASS_REGULAR_EXPRESSION "number: 311117"
+    LABELS "${MODULE}")

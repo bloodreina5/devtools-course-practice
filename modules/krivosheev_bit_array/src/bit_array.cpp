@@ -65,4 +65,6 @@ void BitArray::AllocateArray(int _bitSize) {
   bitSize = _bitSize;
   size = bitSize / 8 + 1;
   arr = new char[size];
+  for (unsigned int i = 0; i < size; i++)
+    arr[i] = 0;
 }

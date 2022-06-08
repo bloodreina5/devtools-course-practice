@@ -3,8 +3,8 @@
 #ifndef MODULES_KUKLIN_ANDREY_MODIFIED_STACK_INCLUDE_MODIFIED_STACK_H_
 #define MODULES_KUKLIN_ANDREY_MODIFIED_STACK_INCLUDE_MODIFIED_STACK_H_
 
+#include <iostream>
 #include <utility>
-
 using std::size_t;
 
 class ModifiedStack {

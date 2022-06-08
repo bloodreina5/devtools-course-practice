@@ -1,0 +1,334 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_Can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} BigIntApplication.exe 1 2
+)
+
+set_tests_properties (${prefix}_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Input error!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} BigIntApplication.exe 22 * 6 10 2
+)
+
+set_tests_properties (${prefix}_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Input error!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Sum_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 + 100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Sum_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 + -100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Sum_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 + 100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Sum_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 + -100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Sub_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 - 100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Sub_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 - -100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Sub_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 - 100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Sub_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 - -100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Mult_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 * 100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Mult_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 * -100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Mult_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 * 100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Mutl_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 * -100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Div_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 / 3
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Div_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 / -9
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Div_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 / 123456789
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Div_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 / -1
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Rem_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 % 123456789
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Rem_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 % -1
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Rem_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 % 3
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Rem_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 % -100
+)
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 > 100
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_More_Left_And_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 > -100
+)
+set_tests_properties (${prefix}_Big_Int_Bool_More_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 > 100
+)
+set_tests_properties (${prefix}_Big_Int_Bool_More_Left_Negative_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 > -100
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_More_Left_And_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Or_Equal_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 >= 123456789
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_More_Or_Equal_Left_And_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Or_Equal_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 >= -123456789
+)
+set_tests_properties (${prefix}_Big_Int_Bool_More_Or_Equal_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Or_Equal_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 >= 999999999
+)
+set_tests_properties (${prefix}_Big_Int_Bool_More_Or_Equal_Left_Negative_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Or_Equal_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 >= -123456789123
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_More_Or_Equal_Left_And_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 100 < 123456789
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Left_And_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 < -100
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 > 100
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 > -123456789123
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Left_And_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Or_Equal_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 100 <= 123456789
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Or_Equal_Left_And_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Or_Equal_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 <= -100
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Or_Equal_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Or_Equal_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 <= -123456789
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Or_Equal_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Less_Or_Equal_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 <= -123456789123
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Less_Or_Equal_Left_And_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}"
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Equal_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 == 123456789
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Equal_Left_And_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Equal_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 == -123456789
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Equal_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Equal_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 == 123456789
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Equal_Left_Negative_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Equal_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 == -123456789
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Equal_Left_And_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Not_Equal_Left_And_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 != 123456789
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Not_Equal_Left_And_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_More_Not_Equal_Left_Positive_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe 123456789 != -123456789
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Not_Equal_Left_Positive_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Not_Equal_Left_Negative_Right_Positive
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 != 123456789
+)
+set_tests_properties (${prefix}_Big_Int_Bool_Not_Equal_Left_Negative_Right_Positive PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s true!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_Big_Int_Bool_Not_Equal_Left_And_Right_Negative
+    COMMAND ${APPLICATION} BigIntApplication.exe -123456789 != -123456789
+)
+
+set_tests_properties (${prefix}_Big_Int_Bool_Not_Equal_Left_And_Right_Negative PROPERTIES
+    PASS_REGULAR_EXPRESSION "It`s false"
+    LABELS "${MODULE}")

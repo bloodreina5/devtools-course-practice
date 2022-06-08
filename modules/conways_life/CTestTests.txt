@@ -3,3 +3,75 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties(${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+set_tests_properties(${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION
+        "This application simulates an iteration of John Conway's Game of Life."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments_less
+    COMMAND ${APPLICATION} 5 5
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments_less PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: should be 3 arguments!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments_more
+    COMMAND ${APPLICATION} 5 5 000000001001010001100000001 42
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments_more PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: should be 3 arguments!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Wrong_Number_Format
+    COMMAND ${APPLICATION} five 5 000000001001010001100000001
+)
+set_tests_properties (${prefix}_can_Detect_Wrong_Number_Format PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid dimensions!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Invalid_Cell
+    COMMAND ${APPLICATION} 5 5 000000001001020001100000001
+)
+set_tests_properties (${prefix}_can_Detect_Invalid_Cell PROPERTIES
+    PASS_REGULAR_EXPRESSION "Invalid cell"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Not_Enough_Cells
+    COMMAND ${APPLICATION} 5 5 0000000010010100011
+)
+set_tests_properties (${prefix}_can_Detect_Not_Enough_Cells PROPERTIES
+    PASS_REGULAR_EXPRESSION "Not enough cells!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Detect_Too_Many_Cells
+    COMMAND ${APPLICATION} 5 5 000000001001010001100000001
+)
+set_tests_properties (${prefix}_can_Detect_Too_Many_Cells PROPERTIES
+    PASS_REGULAR_EXPRESSION "Too many cells!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Simulate_Iteration
+    COMMAND ${APPLICATION} 5 5 0000000010010100011000000
+)
+set_tests_properties (${prefix}_can_Simulate_Iteration PROPERTIES
+    PASS_REGULAR_EXPRESSION "0000000100000110011000000"
+    LABELS "${MODULE}")

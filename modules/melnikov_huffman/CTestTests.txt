@@ -1,0 +1,47 @@
+#############################################
+##### Testing
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(NAME ${prefix}_can_run
+    COMMAND ${APPLICATION})
+set_tests_properties(${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}_run_without_arguments
+    COMMAND ${APPLICATION})
+set_tests_properties(${prefix}_run_without_arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "Haffman code"
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}first_test
+    COMMAND ${APPLICATION} 1)
+set_tests_properties(${prefix}first_test PROPERTIES
+    PASS_REGULAR_EXPRESSION ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}second_test
+    COMMAND ${APPLICATION} test)
+set_tests_properties(${prefix}second_test PROPERTIES
+    PASS_REGULAR_EXPRESSION ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}third_test
+    COMMAND ${APPLICATION} sadasdsass)
+set_tests_properties(${prefix}third_test PROPERTIES
+    PASS_REGULAR_EXPRESSION ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}test4
+    COMMAND ${APPLICATION} qqqqqqq)
+set_tests_properties(${prefix}test4 PROPERTIES
+    PASS_REGULAR_EXPRESSION ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}test5
+    COMMAND ${APPLICATION} zzzzzzzz)
+set_tests_properties(${prefix}test5 PROPERTIES
+    PASS_REGULAR_EXPRESSION ""
+    LABELS "${MODULE}")
+

@@ -81,21 +81,20 @@ void Set::add(const int value) {
                 tHead->next = newNode;
                 ++size;
                 return;
+            }
+            if (value > tHead->next->value) {
+                tHead = tHead->next;
+            } else if (value < tHead->next->value) {
+                Set::Node* newNode = new Set::Node(value);
+                Set::Node* tNext = tHead->next;
+                tHead->next = newNode;
+                tNext->prev = newNode;
+                newNode->prev = tHead;
+                newNode->next = tNext;
+                ++size;
+                return;
             } else {
-                if (value > tHead->next->value) {
-                    tHead = tHead->next;
-                } else if (value < tHead->next->value) {
-                    Set::Node* newNode = new Set::Node(value);
-                    Set::Node* tNext = tHead->next;
-                    tHead->next = newNode;
-                    tNext->prev = newNode;
-                    newNode->prev = tHead;
-                    newNode->next = tNext;
-                    ++size;
-                    return;
-                } else {
-                    throw "Value already exists in Set";
-                }
+                throw "Value already exists in Set";
             }
         } else if (value < tHead->value) {
             Set::Node* newNode = new Set::Node(value);

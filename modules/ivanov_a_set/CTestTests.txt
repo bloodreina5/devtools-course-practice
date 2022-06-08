@@ -3,3 +3,40 @@
 #############################################
 
 set(prefix "${MODULE}")
+add_test(NAME ${prefix}_run_with_one_argument
+    COMMAND ${APPLICATION} 3)
+    
+set_tests_properties(${prefix}_run_with_one_argument PROPERTIES
+    PASS_REGULAR_EXPRESSION "0"
+    LABELS "${MODULE}")
+
+set(prefix "${MODULE}")
+add_test(NAME ${prefix}_one_element
+    COMMAND ${APPLICATION} 1 0 3)
+set_tests_properties(${prefix}_one_element PROPERTIES
+    PASS_REGULAR_EXPRESSION "1"
+    LABELS "${MODULE}")
+
+
+set(prefix "${MODULE}")
+add_test(NAME ${prefix}_two_element
+    COMMAND ${APPLICATION} 1 0 1 1 3)
+set_tests_properties(${prefix}_two_element PROPERTIES
+    PASS_REGULAR_EXPRESSION "2"
+    LABELS "${MODULE}")
+
+set(prefix "${MODULE}")
+add_test(NAME ${prefix}_one_elements
+    COMMAND ${APPLICATION} 1 0 1 1 2 0 3)
+set_tests_properties(${prefix}_one_elements PROPERTIES
+    PASS_REGULAR_EXPRESSION "1"
+    LABELS "${MODULE}")
+
+set(prefix "${MODULE}")
+add_test(NAME ${prefix}_tree_elements
+    COMMAND ${APPLICATION} 1 0 1 1 1 2 3)
+set_tests_properties(${prefix}_tree_elements PROPERTIES
+    PASS_REGULAR_EXPRESSION "3"
+    LABELS "${MODULE}")
+
+

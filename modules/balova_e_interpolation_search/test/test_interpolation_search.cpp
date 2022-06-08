@@ -55,3 +55,12 @@ TEST(Balova_Elena_Inter_Search_Test, search_in_unsorted) {
     int result = s.search(4, unsorted_array);
     ASSERT_EQ(-1, result);
 }
+
+TEST(Balova_Elena_Inter_Search_Test, first_elem_more_bigger_last) {
+    std::vector<int> sorted_array = {
+        -100, -1, 0, 0, 2, 3
+    };
+    InterpolationSearch<int> s;
+    int result = s.search(0, sorted_array);
+    ASSERT_EQ(3, result);
+}

@@ -1,0 +1,93 @@
+#############################################
+
+set(prefix "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Run
+    COMMAND ${APPLICATION}
+)
+set_tests_properties (${prefix}_can_Run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Print_Help_Without_Arguments
+    COMMAND ${APPLICATION}
+)
+
+set_tests_properties (${prefix}_can_Print_Help_Without_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "This is a number translation application."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Of_Arguments
+    COMMAND ${APPLICATION} 1
+)
+set_tests_properties (${prefix}_can_Check_Number_Of_Arguments PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Should be at least 3 arguments."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Arguments_Validation
+    COMMAND ${APPLICATION} 2 3
+)
+set_tests_properties (${prefix}_can_Check_Arguments_Validation PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Invalid type of argument."
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Number_Out_Of_Range
+    COMMAND ${APPLICATION} 10000000000 translating_a_number_into_a_word
+)
+set_tests_properties (${prefix}_can_Check_Number_Out_Of_Range PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR : Number out of range!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Wrong_Operation
+    COMMAND ${APPLICATION} 1 qqq
+)
+set_tests_properties (${prefix}_can_Check_Wrong_Operation PROPERTIES
+    PASS_REGULAR_EXPRESSION "ERROR: Wrong operation!"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Solve_Hanoi
+    COMMAND ${APPLICATION} 3 solve_hanoi
+)
+set_tests_properties (${prefix}_can_Check_Translating_Number_Into_Word PROPERTIES
+    PASS_REGULAR_EXPRESSION ""
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Solve_Hanoi_Print
+    COMMAND ${APPLICATION} 3 solve_hanoi 228
+)
+set_tests_properties (${prefix}_can_Check_Solve_Hanoi_Print PROPERTIES
+    PASS_REGULAR_EXPRESSION "Move from 1 to 2\n
+Move from 1 to 3\n
+Move from 2 to 3\n
+Move from 1 to 2\n
+Move from 3 to 1\n
+Move from 3 to 2\n
+Move from 1 to 2\n"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Solve_Hanoi_With_Arg_Printed
+    COMMAND ${APPLICATION} 3 solve_hanoi_with_arg 228 2
+)
+set_tests_properties (${prefix}_can_Check_Solve_Hanoi_With_Arg_Printed PROPERTIES
+    PASS_REGULAR_EXPRESSION "Move from 1 to 3\n
+Move from 1 to 2\n
+Move from 3 to 2\n"
+    LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Check_Print_All_Instructions
+    COMMAND ${APPLICATION} 2 print_all_instructions
+)
+set_tests_properties (${prefix}_can_Check_Print_All_Instructions PROPERTIES
+    PASS_REGULAR_EXPRESSION "Move from 1 to 3\n
+Move from 1 to 2\n
+Move from 3 to 2\n"
+    LABELS "${MODULE}")
