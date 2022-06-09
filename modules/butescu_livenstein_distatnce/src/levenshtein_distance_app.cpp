@@ -20,5 +20,6 @@ std::string LevenshteinApp::operator()(int argc, const char* argv[]) {
     std::vector<std::vector<int>> lev_dist(source.length() + 1,
         std::vector<int>(target.length() + 1));
     lev_dist[0][0] = 0;
+    return std::to_string(lev_dist[source.length()][target.length()]);
 }
 
