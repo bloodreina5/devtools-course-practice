@@ -3,3 +3,38 @@
 #############################################
 
 set(prefix "${MODULE}")
+
+add_test(NAME ${prefix}_can_run
+    COMMAND ${APPLICATION})
+set_tests_properties(${prefix}_can_run PROPERTIES
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}first_test
+    COMMAND ${APPLICATION} Mexico, Serbia)
+set_tests_properties(${prefix}first_test PROPERTIES
+    LEVENSHTEIN_DISTANCE ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}second_test
+    COMMAND ${APPLICATION} Russia, Bulgaria)
+set_tests_properties(${prefix}second_test PROPERTIES
+    LEVENSHTEIN_DISTANCE ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}third_test
+    COMMAND ${APPLICATION} Argentina, Germany)
+set_tests_properties(${prefix}third_test PROPERTIES
+    LEVENSHTEIN_DISTANCE ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}test4
+    COMMAND ${APPLICATION} France, Spain)
+set_tests_properties(${prefix}test4 PROPERTIES
+    LEVENSHTEIN_DISTANCE ""
+    LABELS "${MODULE}")
+
+add_test(NAME ${prefix}test5
+    COMMAND ${APPLICATION} Portugal, Italy)
+set_tests_properties(${prefix}test5 PROPERTIES
+    LEVENSHTEIN_DISTANCE ""
+    LABELS "${MODULE}")
